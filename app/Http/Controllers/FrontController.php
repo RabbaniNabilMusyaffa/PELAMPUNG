@@ -51,7 +51,7 @@ class FrontController extends Controller
 
         $existingWishlist = Wishlist::where('produk_id', $data->id)->where('user_id', auth()->id())->first();
 
-        if($existingWishlist){
+        if ($existingWishlist) {
             return redirect()->route('front.index')->with('message', 'Item sudah ada di wishlist kamu');
         } else {
             Wishlist::create([
@@ -84,5 +84,10 @@ class FrontController extends Controller
     {
         $orders = AccPenjualan::with('produk')->where('user_id', auth()->id())->get();
         return view('front.order', ['orders' => $orders]);
+    }
+
+    public function catalog()
+    {
+        return view('catalog.index');
     }
 }

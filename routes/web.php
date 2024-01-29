@@ -81,7 +81,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/edit-accpenjualan/{id}', [AccPenjualanController::class, 'Edit'])->name('edit-accpenjualan');
         Route::post('/update-accpenjualan/{id}', [AccPenjualanController::class, 'Update'])->name('update-accpenjualan');
         Route::DELETE('/delete-accpenjualan/{id}', [AccPenjualanController::class, 'Delete'])->name('delete-accpenjualan');
-
     });
 
     Route::group(['middleware' => 'role_id:1'], function () {
@@ -127,7 +126,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/profil', [UserController::class, 'profil'])->name('user.profil');
         Route::post('/profil', [UserController::class, 'updateProfil'])->name('user.update_profil');
     });
-
 });
 
 Route::group(['middleware' => 'role_id:1,3'], function () {
@@ -140,7 +138,7 @@ Route::group(['middleware' => 'role_id:1,3'], function () {
     Route::get('/cart/add/{id}', [KeranjangController::class, 'addcart'])->name('cart.add');
     Route::post('/cart/update/{id}', [KeranjangController::class, 'updatecart'])->name('cart.update');
     Route::delete('/delete/{cartItem}', [KeranjangController::class, 'destroy'])->name('cart.destroy');
-    
+
     Route::get('/profile', [FrontController::class, 'profile'])->name('index.profile');
     Route::get('/profile/orders', [FrontController::class, 'showorders'])->name('profile.orders');
 
@@ -150,6 +148,7 @@ Route::group(['middleware' => 'role_id:1,3'], function () {
     Route::get('/wishlist/add/{id}', [FrontController::class, 'addwishlist'])->name('wishlist.add');
     Route::delete('delete/wishlist/{item}', [FrontController::class, 'deleteWishlist'])->name('wishlist.destroy');
 
+    Route::get('/catalogue', [FrontController::class, 'catalog'])->name('catalog.index');
+
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 });
-

@@ -88,6 +88,7 @@ class FrontController extends Controller
 
     public function catalog()
     {
-        return view('catalog.index');
+        $items = Produk::all();
+        return view('catalog.index', compact('items'));
     }
 }

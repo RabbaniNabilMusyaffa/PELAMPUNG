@@ -44,7 +44,7 @@ Route::post('/send-register', [RegisterController::class, 'store'])->name('send-
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::group(['middleware' => 'role_id:2'], function () {
+    Route::group(['middleware' => 'role_id:1'], function () {
         Route::get('/kategori/data', [KategoriController::class, 'data'])->name('kategori.data');
         Route::resource('/kategori', KategoriController::class);
 
@@ -81,9 +81,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/edit-accpenjualan/{id}', [AccPenjualanController::class, 'Edit'])->name('edit-accpenjualan');
         Route::post('/update-accpenjualan/{id}', [AccPenjualanController::class, 'Update'])->name('update-accpenjualan');
         Route::DELETE('/delete-accpenjualan/{id}', [AccPenjualanController::class, 'Delete'])->name('delete-accpenjualan');
-    });
+        Route::get('/role', [RoleController::class, 'index'])->name('role.index');
+        Route::get('/role/baru', [RoleController::class, 'create'])->name('role.create');
+        Route::post('/role/simpan', [RoleController::class, 'store'])->name('role.simpan');
+        // Route::post('/role/update/{id}', [RoleController::class, 'update'])->name('role.update');
+        Route::delete('/role/delete/{id}', [RoleController::class, 'destroy'])->name('role.delete');
+        Route::resource('/role', RoleController::class);
 
-    Route::group(['middleware' => 'role_id:1'], function () {
+        Route::get('/member/data', [MemberController::class, 'data'])->name('member.data');
+        Route::post('/member/cetak-member', [MemberController::class, 'cetakMember'])->name('member.cetak_member');
+        Route::resource('/member', MemberController::class);
         Route::get('/transaksi/baru', [PenjualanController::class, 'create'])->name('transaksi.baru');
         Route::post('/transaksi/simpan', [PenjualanController::class, 'store'])->name('transaksi.simpan');
         Route::get('/transaksi/selesai', [PenjualanController::class, 'selesai'])->name('transaksi.selesai');
@@ -95,16 +102,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('/transaksi', PenjualanDetailController::class)
             ->except('create', 'show', 'edit');
 
-        Route::get('/role', [RoleController::class, 'index'])->name('role.index');
-        Route::get('/role/baru', [RoleController::class, 'create'])->name('role.create');
-        Route::post('/role/simpan', [RoleController::class, 'store'])->name('role.simpan');
-        // Route::post('/role/update/{id}', [RoleController::class, 'update'])->name('role.update');
-        Route::delete('/role/delete/{id}', [RoleController::class, 'destroy'])->name('role.delete');
-        Route::resource('/role', RoleController::class);
-
-        Route::get('/member/data', [MemberController::class, 'data'])->name('member.data');
-        Route::post('/member/cetak-member', [MemberController::class, 'cetakMember'])->name('member.cetak_member');
-        Route::resource('/member', MemberController::class);
     });
 
     Route::group(['middleware' => 'role_id:1,2'], function () {

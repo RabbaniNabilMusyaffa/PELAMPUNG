@@ -25,7 +25,7 @@
                 <br><br>
 
                 @if (auth()->check() && (auth()->user()->role->id == 3))
-                <a href="{{ route('front.index') }}" class="btn btn-success btn-lg">Home</a>
+                <a href="{{ route('catalog.index') }}" class="btn btn-success btn-lg">Home</a>
                 @else
                 <a href="{{ route('transaksi.baru') }}" class="btn btn-success btn-lg">Transaksi Baru</a>
                 @endif

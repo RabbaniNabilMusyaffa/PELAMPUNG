@@ -1,15 +1,7 @@
-@extends('layouts.index')
+@extends('catalog.index')
 
 @section('content')
-<header style="background-color: #F3B95F" class="py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Merchandise</h1>
-            <p class="lead fw-normal text-dark mb-0">Cari berbagai merchandise murah meriah dan berkualitas sekarang</p>
-        </div>
-    </div>
-</header>
-<div class="container px-4 px-lg-5 mt-5">
+<div class="container px-4 px-lg-5 mt-3">
     <form action="{{ route('front.index') }}" method="GET">
         <div class="row g-2">
             <div class="col-4">

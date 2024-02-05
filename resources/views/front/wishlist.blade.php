@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('catalog.index')
 
 @section('content')
     <div class="container px-4 px-lg-5 mb-3">

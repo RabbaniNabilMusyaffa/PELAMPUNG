@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('catalog.index')
 
 @section('content')
 <div class="container">

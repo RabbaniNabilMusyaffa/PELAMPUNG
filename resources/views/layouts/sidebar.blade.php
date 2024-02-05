@@ -82,13 +82,23 @@
                 </a>
             </li> --}}
             <li class="header">SYSTEM</li>
-            <li>
+            {{-- <li>
                 <a href="{{ route('user.index') }}">
                     <i class="fa fa-users"></i> <span>User</span>
                 </a>
+            </li> --}}
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-users"></i> <span>User</span> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ route('user.index') }}">Profile</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
             </li>
+            
             <li>
-                <a href="{{ route(" setting.index") }}">
+                <a href="{{ route('setting.index') }}">
                     <i class="fa fa-cogs"></i> <span>Pengaturan</span>
                 </a>
             </li>

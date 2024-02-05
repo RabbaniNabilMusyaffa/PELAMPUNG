@@ -841,6 +841,15 @@ figure.instagram-item img.insta-image {
     padding-right: 30px;
 }
 
+footer {
+    background-color: #0b60b0;
+    padding: 20px; /* Adjust padding as needed */
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
 /* 9. About Us Page
 /*----------------------------------------------*/
 /*------------ Video Icon -----------*/

@@ -43,15 +43,7 @@
                 <span class="help-block with-errors"></span>
                 @enderror
             </div>
-            <label for="role_id" class="control-label">Role</label>
-            <div class="form-group has-feedback @error('role_id') has-error @enderror">
-                <select name="role_id" id="role_id" class="form-control" required>
-                    <option value="">Pilih Role</option>
-                    <option value="2">Penjual</option>
-                    <option value="3">Pembeli</option>
-                </select>
-                <span class="help-block with-errors"></span>
-            </div>
+            <input type="hidden" name="role_id" value="3">
             <div class="row">
                 <!-- /.col -->
                 <div class="col-xs-4">

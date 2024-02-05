@@ -40,7 +40,7 @@
                                                 @method('delete')
                                                 <button type="button" class="btn btn-danger"
                                                     onclick="confirmDelete({{ $cartItem->id }})"><i
-                                                        class="bi-trash"></i>Hapus</button>
+                                                        class="bi-trash"></i></button>
                                             </form>
                                         </div>
                                         <div class="col-3">
@@ -48,7 +48,7 @@
                                                 @csrf
                                                 @method('post')
                                                 <button type="submit" class="btn btn-primary"><i
-                                                        class="bi-check"></i>Checkout</button>
+                                                        class="bi-check"></i></button>
                                             </form>
                                         </div>
                                     </div>

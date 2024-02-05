@@ -76,7 +76,7 @@ class AccPenjualanController extends Controller
         ]);
 
         $accPenjualan->save();
-        return redirect()->back()->with('message', 'Berhasil Checkout Barang');
+         return redirect()->route('success.page', ['id' => $accPenjualan->id])->with('message', 'Berhasil Checkout Barang');
     }
     public function add(Request $request, $id)
     {
@@ -93,7 +93,7 @@ class AccPenjualanController extends Controller
 
         $cartItem->delete();
 
-        return redirect()->back()->with('message', 'Berhasil Checkout Barang');
+         return redirect()->route('success.page', ['id' => $cartItem->id])->with('message', 'Berhasil Checkout Barang');
     }
 
 }

@@ -147,5 +147,7 @@ Route::group(['middleware' => 'role_id:1,3'], function () {
 
     Route::get('/catalogue', [FrontController::class, 'catalog'])->name('catalog.index');
 
+    Route::get('/success/{id}', [FrontController::class, 'successPage'])->name('success.page');
+
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 });

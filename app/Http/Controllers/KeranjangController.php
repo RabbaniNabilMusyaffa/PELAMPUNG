@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Keranjang;
 use App\Models\Produk;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -106,12 +107,12 @@ class KeranjangController extends Controller
     {
         // Check if the product exists before trying to find it
         $product = Produk::find($id);
-    
+        $setting = Setting::first();
         if (!$product) {
             // Handle the case where the product is not found, for example, redirect to an error page or show an error message.
             return redirect()->route('front.cart')->with('error', 'Product not found');
         }
-    
+
 
         // Check if the product is already in the user's cart
         $existingCartItem = Keranjang::where('produk_id', $product->id)

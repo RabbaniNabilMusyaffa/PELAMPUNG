@@ -26,7 +26,8 @@
                                 <td>
                                     <div class="row g-0">
                                         <div class="col-6">
-                                            <form action="{{ route('cart.update', $cartItem->id) }}" method="post" class="mb-2">
+                                            <form action="{{ route('cart.update', $cartItem->id) }}" method="post"
+                                                class="mb-2">
                                                 @csrf
                                                 @method('post')
                                                 <input type="number" style="width: 100px;" name="stok"
@@ -44,10 +45,11 @@
                                             </form>
                                         </div>
                                         <div class="col-3">
-                                            <form action="{{ route('add-accpenjualan', ['id' => $cartItem->id]) }}" method="post">
+                                            <form method="post" action="{{ route('add-accpenjualan', $cartItem->id) }}"
+                                                id="checkoutForm{{ $cartItem->id }}">
                                                 @csrf
-                                                @method('post')
-                                                <button type="submit" class="btn btn-primary"><i
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="confirmCheckout({{ $cartItem->id }})"><i
                                                         class="bi-check"></i></button>
                                             </form>
                                         </div>
@@ -82,14 +84,39 @@
         </div>
     </div>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     function confirmDelete(cartItemId) {
-        var result = confirm('Apakah Anda yakin ingin menghapus produk dari keranjang?');
-
-        if (result) {
-            document.getElementById('deleteForm' + cartItemId).submit();
+            Swal.fire({
+                title: "Konfirmasi Penghapusan",
+                text: "Apakah Anda yakin ingin menghapus produk dari keranjang?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Ya, hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('deleteForm' + cartItemId).submit();
+                }
+            });
         }
+
+    function confirmCheckout(cartItemId) {
+        Swal.fire({
+            title: "Konfirmasi Checkout",
+            text: "Apakah Anda yakin ingin checkout produk dari keranjang?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, checkout!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('checkoutForm' + cartItemId).submit();
+            }
+        });
     }
 </script>
+
 @endsection

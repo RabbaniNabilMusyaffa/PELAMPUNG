@@ -1,17 +1,15 @@
 <header id="header" class="site-header header-scrolled fixed-top text-black bg-light">
     <nav style="background-color: #0B60B0" id="header-nav" class="navbar navbar-expand-lg px-5 py-3">
       <div class="container-fluid">
-        <a class="navbar-brand" style="color: white; font-family: 'Poppins';" href="{{ route('catalog.index') }}">PELAMPUNG</a>
-        {{-- @php
+        <a class="navbar-brand" style="color: white; font-family: 'Poppins';" href="{{ route('catalog.index') }}">
+        @php
         $words = explode(' ', $setting->nama_perusahaan);
         $word  = '';
         foreach ($words as $w) {
             $word .= $w[0];
         }
     @endphp
-    <span class="logo-mini">{{ $word }}</span>
-    <!-- logo for regular state and mobile devices -->
-    <span class="logo-lg"><b>{{ $setting->nama_perusahaan }}</b></span></a> --}}
+    <span class="logo-lg"><b>{{ $setting->nama_perusahaan }}</b></span></a>
         <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
           <svg class="navbar-icon">
             <use xlink:href="#navbar-icon"></use>

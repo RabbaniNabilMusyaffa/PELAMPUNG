@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AccPenjualan;
 use App\Models\Keranjang;
 use App\Models\Produk;
+use App\Models\Setting;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,7 @@ class FrontController extends Controller
 {
     public function index(Request $request)
     {
+        $setting = Setting::first();
         $minPrice = $request->input('min_price');
         $maxPrice = $request->input('max_price');
 
@@ -24,25 +26,27 @@ class FrontController extends Controller
         }
 
         $produkfront = $produkfront->get();
-        return view('front.content', compact('produkfront', 'minPrice', 'maxPrice'));
+        return view('front.content', compact('produkfront', 'minPrice', 'maxPrice','setting'));
     }
     public function cart()
     {
+        $setting = Setting::first();
         $cartItems = Keranjang::where('user_id', Auth::id())->get();
-        return view('front.cart', compact('cartItems'));
+        return view('front.cart', compact('cartItems', 'setting'));
     }
 
     public function detailcontent($id)
     {
         $detail = Produk::find($id);
-
-        return view('front.detailcontent', compact('detail'));
+        $setting = Setting::first();
+        return view('front.detailcontent', compact('detail','setting'));
     }
 
     public function wishlist()
     {
+        $setting = Setting::first();
         $wishlistItem = Wishlist::where('user_id', Auth::id())->get();
-        return view('front.wishlist', compact('wishlistItem'));
+        return view('front.wishlist', compact('wishlistItem','setting'));
     }
 
     public function addwishlist($id)
@@ -89,6 +93,14 @@ class FrontController extends Controller
     public function catalog()
     {
         $items = Produk::all();
-        return view('catalog.catalogue', compact('items'));
+        $setting = Setting::first();
+        return view('catalog.catalogue', compact('items', 'setting'));
+    }
+    public function successPage($id)
+    {
+        $data = AccPenjualan::with('produk.user')->where('id', $id)->first();
+        $setting = Setting::first();
+
+        return view('catalog.successpage', compact('data','setting'));
     }
 }

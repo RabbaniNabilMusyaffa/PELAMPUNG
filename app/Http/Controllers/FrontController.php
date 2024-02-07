@@ -56,7 +56,7 @@ class FrontController extends Controller
         $existingWishlist = Wishlist::where('produk_id', $data->id)->where('user_id', auth()->id())->first();
 
         if ($existingWishlist) {
-            return redirect()->route('front.index')->with('message', 'Item sudah ada di wishlist kamu');
+            return redirect()->back()->with('message', 'Item sudah ada di wishlist kamu');
         } else {
             Wishlist::create([
                 'produk_id' => $data->id,
@@ -64,7 +64,7 @@ class FrontController extends Controller
             ]);
         }
 
-        return redirect()->route('front.index');
+        return redirect()->back();
     }
 
     public function deletewishlist(Wishlist $item)

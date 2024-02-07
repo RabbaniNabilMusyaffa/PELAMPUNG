@@ -21,7 +21,8 @@
         @foreach($produkfront as $product)
         <div class="col mb-5">
             <div class="card position-relative">
-                <a href="{{ route('wishlist.add', ['id' => $product->id]) }}" class="position-absolute top-0 end-0 p-3 text-danger love-icon"><i class="bi-heart"></i></a>
+                <a href="{{ route('wishlist.add', ['id' => $product->id]) }}"
+                    class="position-absolute top-0 end-0 p-3 text-danger love-icon"><i class="bi-heart"></i></a>
                 <a style="text-decoration: none" href="{{ route('produk.detail', ['id' => $product->id]) }}">
                     <img class="card-img-top" width="500" height="150" src="{{ $product->photo }}" alt="..." />
                     <div class="card-body p-4">
@@ -33,10 +34,12 @@
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent d-flex justify-content-between">
                         <div class="flex-grow-1 me-3">
                             <a class="btn btn-outline-warning mt-auto w-100 checkout-btn" data-bs-toggle="modal"
-    data-bs-target="#checkoutModal-{{ $product->id }}" data-product-id="{{ $product->id }}">Checkout</a>
+                                data-bs-target="#checkoutModal-{{ $product->id }}"
+                                data-product-id="{{ $product->id }}">Checkout</a>
                         </div>
                         <div>
-                            <a class="btn btn-outline-primary mt-auto" href="{{ route('cart.add', ['id' => $product->id]) }}"><i class="bi-cart-fill"></i></a>
+                            <a class="btn btn-outline-primary mt-auto"
+                                href="{{ route('cart.add', ['id' => $product->id]) }}"><i class="bi-cart-fill"></i></a>
                         </div>
                     </div>
                 </a>

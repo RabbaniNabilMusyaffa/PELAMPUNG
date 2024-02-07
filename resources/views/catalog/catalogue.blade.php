@@ -15,7 +15,8 @@
                             <div class="banner-content">
                                 <h1 class="display-2 text-uppercase text-dark pb-5">Selamat datang di website resmi
                                     PELAMPUNG</h1>
-                                <a href="#mobile-products" class="btn btn-medium btn-dark text-uppercase btn-rounded-none"
+                                <a href="#mobile-products"
+                                    class="btn btn-medium btn-dark text-uppercase btn-rounded-none"
                                     style="background-color: #0B60B0;">Shop Product</a>
                             </div>
                         </div>
@@ -37,19 +38,21 @@
                 <div class="row g-2">
                     <div class="col-4">
                         <label for="min_price">Min Price:</label>
-                        <input type="number" class="form-control" name="min_price" id="min_price" value="{{ $minPrice }}">
+                        <input type="number" class="form-control" name="min_price" id="min_price"
+                            value="{{ $minPrice }}">
                     </div>
                     <div class="col-4">
                         <label for="max_price">Max Price:</label>
-                        <input type="number" class="form-control" name="max_price" id="max_price" value="{{ $maxPrice }}">
+                        <input type="number" class="form-control" name="max_price" id="max_price"
+                            value="{{ $maxPrice }}">
                     </div>
                     <div class="col-4 pt-4">
                         <button class="btn btn-primary" type="submit">Filter</button>
                     </div>
                 </div>
             </form>
-            <div class="swiper product-swiper">
-                <div class="swiper-wrapper">
+            <div class="swiper product-swiper ">
+                <div class="swiper-wrapper ">
                     @foreach ($produkfront as $item)
                     <div class="swiper-slide">
                         <div class="product-card position-relative">
@@ -58,10 +61,16 @@
                             </div>
                             <div class="cart-concern position-absolute">
                                 <div class="cart-button d-flex">
-                                    <a href="{{route('cart.add', $item->id)}}" class="btn btn-medium btn-black">Add to
+                                    <a href="{{route('cart.add', $item->id)}}" class="btn btn-medium btn-black me-1">Add
+                                        to
                                         Cart<svg class="cart-outline">
                                             <use xlink:href="#cart-outline"></use>
-                                        </svg></a>
+                                        </svg>
+                                    </a>
+                                    <a class="btn btn-lg btn-danger mt-auto"
+                                        href="{{ route('wishlist.add', ['id' => $item->id]) }}"
+                                        class="position-absolute top-0 end-0 p-3 text-danger love-icon"><i
+                                            class="bi-heart"></i></a>
                                 </div>
                             </div>
                             <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">

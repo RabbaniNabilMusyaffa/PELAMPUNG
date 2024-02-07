@@ -81,7 +81,8 @@ class FrontController extends Controller
     public function profile()
     {
         $user = Auth::user();
-        return view('front.profile', compact('user'));
+        $setting = Setting::first();
+        return view('front.profile', compact('user','setting'));
     }
 
     public function showorders()

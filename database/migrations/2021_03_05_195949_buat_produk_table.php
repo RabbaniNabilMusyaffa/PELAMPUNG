@@ -16,7 +16,6 @@ class BuatProdukTable extends Migration
         Schema::create('produk', function (Blueprint $table) {
             $table->id('id');
             $table->foreignId('user_id')->constrained();
-            // $table->increments('id_produk');
             $table->unsignedInteger('id_kategori');
             $table->string('nama_produk')->unique();
             $table->string('merk')->nullable();

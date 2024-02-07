@@ -33,9 +33,24 @@
             <div class="display-header d-flex justify-content-between pb-3">
                 <h2 class="display-7 text-dark text-uppercase">Beberapa produk kami :</h2>
             </div>
+            <form action="{{ route('catalog.index') }}" method="GET" class="mb-5">
+                <div class="row g-2">
+                    <div class="col-4">
+                        <label for="min_price">Min Price:</label>
+                        <input type="number" class="form-control" name="min_price" id="min_price" value="{{ $minPrice }}">
+                    </div>
+                    <div class="col-4">
+                        <label for="max_price">Max Price:</label>
+                        <input type="number" class="form-control" name="max_price" id="max_price" value="{{ $maxPrice }}">
+                    </div>
+                    <div class="col-4 pt-4">
+                        <button class="btn btn-primary" type="submit">Filter</button>
+                    </div>
+                </div>
+            </form>
             <div class="swiper product-swiper">
                 <div class="swiper-wrapper">
-                    @foreach ($items as $item)
+                    @foreach ($produkfront as $item)
                     <div class="swiper-slide">
                         <div class="product-card position-relative">
                             <div class="image-holder">

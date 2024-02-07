@@ -134,7 +134,7 @@ class KeranjangController extends Controller
             ]);
         }
 
-        return redirect()->route('front.index');
+        return redirect()->route('front.cart');
     }
 
 }

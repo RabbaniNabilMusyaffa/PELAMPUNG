@@ -91,11 +91,21 @@ class FrontController extends Controller
         return view('front.order', ['orders' => $orders]);
     }
 
-    public function catalog()
+    public function catalog(Request $request)
     {
-        $items = Produk::all();
         $setting = Setting::first();
-        return view('catalog.catalogue', compact('items', 'setting'));
+        $minPrice = $request->input('min_price');
+        $maxPrice = $request->input('max_price');
+
+
+        $produkfront = Produk::query();
+
+        if ($minPrice && $maxPrice) {
+            $produkfront->whereBetween('harga_jual', [$minPrice, $maxPrice]);
+        }
+
+        $produkfront = $produkfront->get();
+        return view('catalog.catalogue', compact('produkfront', 'minPrice', 'maxPrice', 'setting'));
     }
     public function successPage($id)
     {

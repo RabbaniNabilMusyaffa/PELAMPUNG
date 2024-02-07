@@ -15,8 +15,8 @@
             <div class="col-4 pt-4">
                 <button class="btn btn-primary" type="submit">Filter</button>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center mt-5">
         @foreach($produkfront as $product)
         <div class="col mb-5">
@@ -38,7 +38,7 @@
                         <div>
                             <a class="btn btn-outline-primary mt-auto" href="{{ route('cart.add', ['id' => $product->id]) }}"><i class="bi-cart-fill"></i></a>
                         </div>
-                    </div>                                                        
+                    </div>
                 </a>
             </div>
         </div>

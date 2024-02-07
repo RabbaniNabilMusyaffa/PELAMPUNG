@@ -67,7 +67,7 @@
                                             <use xlink:href="#cart-outline"></use>
                                         </svg>
                                     </a>
-                                    <a class="btn btn-lg btn-danger mt-auto"
+                                    <a type="button" class="btn btn-lg btn-danger mt-auto" onclick="wishlist()"
                                         href="{{ route('wishlist.add', ['id' => $item->id]) }}"
                                         class="position-absolute top-0 end-0 p-3 text-danger love-icon"><i
                                             class="bi-heart"></i></a>
@@ -90,6 +90,18 @@
         </div>
     </div>
 </section>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function wishlist() {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Berhasil Disimpan",
+                showConfirmButton: true
+            });
+        }
+</script>
+
 
 
 @endsection

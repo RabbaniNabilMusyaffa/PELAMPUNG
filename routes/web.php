@@ -128,7 +128,6 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'role_id:1,3'], function () {
     Route::get('/front/cart', [FrontController::class, 'cart'])->name('front.cart');
     Route::get('/produk/detail/{id}', [FrontController::class, 'detailcontent'])->name('produk.detail');
-    Route::get('/', [FrontController::class, 'index'])->name('front.index');
     Route::post('/send-accpenjualan/{id}', [AccPenjualanController::class, 'Send'])->name('send-accpenjualan');
     Route::post('/add-accpenjualan/{id}', [AccPenjualanController::class, 'add'])->name('add-accpenjualan');
 

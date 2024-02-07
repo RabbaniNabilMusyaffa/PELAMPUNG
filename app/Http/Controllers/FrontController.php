@@ -9,6 +9,8 @@ use App\Models\Setting;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+
 
 class FrontController extends Controller
 {
@@ -26,7 +28,7 @@ class FrontController extends Controller
         }
 
         $produkfront = $produkfront->get();
-        return view('front.content', compact('produkfront', 'minPrice', 'maxPrice','setting'));
+        return view('front.content', compact('produkfront', 'minPrice', 'maxPrice', 'setting'));
     }
     public function cart()
     {
@@ -39,14 +41,14 @@ class FrontController extends Controller
     {
         $detail = Produk::find($id);
         $setting = Setting::first();
-        return view('front.detailcontent', compact('detail','setting'));
+        return view('front.detailcontent', compact('detail', 'setting'));
     }
 
     public function wishlist()
     {
         $setting = Setting::first();
         $wishlistItem = Wishlist::where('user_id', Auth::id())->get();
-        return view('front.wishlist', compact('wishlistItem','setting'));
+        return view('front.wishlist', compact('wishlistItem', 'setting'));
     }
 
     public function addwishlist($id)
@@ -56,12 +58,13 @@ class FrontController extends Controller
         $existingWishlist = Wishlist::where('produk_id', $data->id)->where('user_id', auth()->id())->first();
 
         if ($existingWishlist) {
-            return redirect()->back()->with('message', 'Item sudah ada di wishlist kamu');
+            Session::flash('message', 'Item sudah ada di wishlist kamu');
         } else {
             Wishlist::create([
                 'produk_id' => $data->id,
                 'user_id' => auth()->id(),
             ]);
+            Session::flash('message', 'Berhasil ditambahkan ke wishlist');
         }
 
         return redirect()->back();
@@ -82,7 +85,7 @@ class FrontController extends Controller
     {
         $user = Auth::user();
         $setting = Setting::first();
-        return view('front.profile', compact('user','setting'));
+        return view('front.profile', compact('user', 'setting'));
     }
 
     public function showorders()
@@ -112,6 +115,6 @@ class FrontController extends Controller
         $data = AccPenjualan::with('produk.user')->where('id', $id)->first();
         $setting = Setting::first();
 
-        return view('catalog.successpage', compact('data','setting'));
+        return view('catalog.successpage', compact('data', 'setting'));
     }
 }

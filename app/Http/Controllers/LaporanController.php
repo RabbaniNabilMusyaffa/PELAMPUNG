@@ -83,12 +83,14 @@ class LaporanController extends Controller
             return response()->json(['message' => 'Tidak ada data untuk diekspor.']);
         }
 
-        $mpdf = new Mpdf([
-            'mode' => 'utf-8',
-            'format' => 'A4',
-            'orientation' => 'P',
-        ]);
+        // Header untuk membuat file PDF
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: attachment; filename="Laporan-pendapatan-' . date('Y-m-d-his') . '.pdf"');
 
+        // Membuka file PDF
+        $pdf = fopen('php://output', 'w');
+
+        // Isi PDF
         $html = '<h1>Laporan Pendapatan</h1>';
         $html .= '<p>Periode: ' . $awal . ' sampai ' . $akhir . '</p>';
 
@@ -114,12 +116,10 @@ class LaporanController extends Controller
 
         $html .= '</tbody></table>';
 
-        $mpdf->WriteHTML($html);
+        fwrite($pdf, $html);
 
-        $pdfFilePath = storage_path('app/public/Laporan-pendapatan-' . date('Y-m-d-his') . '.pdf');
-        $mpdf->Output($pdfFilePath, 'F');
-
-        return response()->download($pdfFilePath)->deleteFileAfterSend(true);
+        // Menutup file PDF
+        fclose($pdf);
     }
 
 }
